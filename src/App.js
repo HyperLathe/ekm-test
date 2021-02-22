@@ -52,6 +52,7 @@ const SearchBox = styled.input`
 `;
 
 const SearchResultsList = styled.ul `
+  list-style-type: none;
 `;
 
 
