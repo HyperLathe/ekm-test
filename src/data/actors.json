@@ -1,0 +1,28 @@
+[
+  {
+    "id": "1001",
+    "name": "Sandra Bullock",
+    "height": 1.71,
+    "dob": "1964-07-26"
+  },{
+    "id": "1002",
+    "name": "Jeff Bridges",
+    "height": 1.85,
+    "dob": "1949-12-04"
+  },{
+    "id": "1003",
+    "name": "Mia Wasikowska",
+    "height": 1.62,
+    "dob": "1989-10-14"
+  },{
+    "id": "1004",
+    "name": "Johnny Depp",
+    "height": 1.78,
+    "dob": "1963-06-09"
+  },{
+    "id": "1005",
+    "name": "Jeff Bridges",
+    "height": 1.73,
+    "dob": "1974-10-04"
+  }
+]
