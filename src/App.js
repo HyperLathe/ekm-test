@@ -75,7 +75,7 @@ const SearchResultsList = styled.ul `
 function App() {
 
   {/* setting up the search states: */}
-  const [searchText, setSearchText] = useState(" ");
+  const [searchText, setSearchText] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   const handleChange = e => {
     setSearchText(e.target.value);
