@@ -66,7 +66,10 @@ const SearchResultsList = styled.ul `
     let item = ActorData[i];
     actorArray.push(item.name);
     idArray.push(item.id);
+    console.log(item.name);
   };
+
+  
 
   /* checking the array output: */
   console.log(actorArray, idArray);
