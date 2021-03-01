@@ -77,7 +77,7 @@ function App() {
       <Content>
         {/* Search box tied into the search hook: */}
         <p>Filter by name or ID: </p>
-        <SearchBox type="text" placeholder="Search" value={searchText} onChange={handleChange}></SearchBox>
+        <SearchBox type="text" placeholder="Search" autoCapitalize="none" autoCorrect="off" value={searchText} onChange={handleChange}></SearchBox>
         <SearchResultsList>
           <tbody>
             <tr>
