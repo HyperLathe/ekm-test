@@ -10,70 +10,38 @@ const Content = styled.section`
   display: flex;
   flex-direction: column;
   width: 70vw;
-  margin: 0px auto;
-`;
-
-const ActorList = styled.ul `
-  margin: 20px 0 0 0;
-  padding: 0;
-  list-style-type: none;
-`;
-
-const ActorListKey = styled.div `
-  margin: 0 0 25px 0;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-    span {
-      width: 20%;
-      font-weight: 600;
-        &:first-child {
-          width: 40%;
-        }
-    }
-`;
-
-const ActorInfo = styled.li`
-  padding: 5px 0px;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-    span {
-      width: 20%;
-        &:first-child {
-          width: 40%;
-        }
-    }
+  margin: 50px auto 0 auto;
+  @media screen and (max-width: 768px) {
+    width: 95vw;
+  }
 `;
 
 const SearchBox = styled.input`
-  margin: 50px auto 0 auto;
-  width: 50%;
+  width: 300px;
+  padding: 5px;
+  margin: 0px;
+  outline: none;
+  background: #e8e8e8;
+  border: 0px;
+  line-height: 2rem;
+  font-size: 1.5rem;
+  @media screen and (max-width: 768px) {
+    width: calc(100% - 10px);
+  }
 `;
 
-const SearchResultsList = styled.ul `
-  list-style-type: none;
+const SearchResultsList = styled.table `
+  margin: 60px 0 0 0;
+  width: 100%;
+  tr:nth-child(odd) {
+    background-color: #e8e8e8;
+  }
+  th, td {
+      text-align: left;
+      width: 25%;
+      padding: 5px;
+    }
 `;
-
-
-
-
-  /* create arrays for Actors and IDs: */
-  let actorArray = [];
-  let idArray = [];
-
-  for(var i in ActorData) {
-    let item = ActorData[i];
-    actorArray.push(item.name);
-    idArray.push(item.id);
-    console.log(item.name);
-  };
-
-  
-
-  /* checking the array output: */
-  console.log(actorArray, idArray);
-
 
 function App() {
 
@@ -86,10 +54,19 @@ function App() {
 
   {/* search function hook: */}
   useEffect(() => {
-    const results = actorArray.filter(actor =>
-      actor.toLowerCase().includes(searchText)
-    );
-    setSearchResults(results);
+    if (isNaN(searchText)) {
+      const results = ActorData.filter(actor =>
+        actor.name.toLowerCase().includes(searchText)
+      );
+      setSearchResults(results);
+    } else {
+      const results = ActorData.filter(actor =>
+        actor.id.includes(searchText)
+      );
+      setSearchResults(results);
+    };
+    
+   
   }, [searchText]);
 
   return (
@@ -98,24 +75,20 @@ function App() {
         <h1>Actor Database</h1>
       </header>
       <Content>
-        <ActorList>
-          <ActorListKey><span>Name:</span><span>ID:</span><span>Height:</span><span>Date of Birth:</span></ActorListKey>
-          {/* iterate over items in the JSON: */}
-          {Object.entries(ActorData).map(([key, value]) => {
-            return (<ActorInfo key={key}>
-                <span>{value.name}</span>
-                <span>{value.id}</span>
-                <span>{value.height}</span>
-                <span>{value.dob}</span>
-              </ActorInfo>)
-          })}
-        </ActorList>
         {/* Search box tied into the search hook: */}
+        <p>Filter by name or ID: </p>
         <SearchBox type="text" placeholder="Search" value={searchText} onChange={handleChange}></SearchBox>
         <SearchResultsList>
-         {searchResults.map(item => (
-          <li>{item}</li>
+          <tbody>
+            <tr>
+              <th>Name</th><th>ID</th><th>Height (Meters)</th><th>Date of Birth</th>
+            </tr>
+         {searchResults.map((item, key) => (
+           <tr key={key}>
+            <td>{item.name}</td><td>{item.id}</td><td>{item.height}</td><td>{item.dob}</td>
+          </tr>
         ))}
+        </tbody>
       </SearchResultsList>
       </Content>
     </div>
